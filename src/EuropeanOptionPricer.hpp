@@ -13,17 +13,17 @@ public:
   virtual double price() = 0;
 };
 
-class BSPricer : public EuropeanOptionPricer {
+class BSEuropeanOptionPricer : public EuropeanOptionPricer {
 public:
-  ~BSPricer() override;
+  ~BSEuropeanOptionPricer() override;
   [[nodiscard]] double price() override;
 private:
   std::shared_ptr<EuropeanOption> m_optionPtr;
 };
 
-class MCPricer : public EuropeanOptionPricer {
+class MCEuropeanOptionPricer : public EuropeanOptionPricer {
 public:
-  ~MCPricer() override;
+  ~MCEuropeanOptionPricer() override;
   [[nodiscard]] double price() override;
 private:
   std::shared_ptr<EuropeanOption> m_optionPtr;
