@@ -20,8 +20,8 @@ public:
                  OptionType type);
 
   // Getters and Setters
-  double get_current() const;
-  void set_current(const double& current);
+  double get_spot() const;
+  void set_spot(const double& current);
   double get_strike() const;
   void set_strike(const double& strike);
   double get_maturity() const;
@@ -36,7 +36,7 @@ public:
   void set_option_type(OptionType type);
 
 private:
-  double m_current;
+  double m_spot;
   double m_strike;
   double m_maturity;
   double m_vol;

@@ -13,12 +13,12 @@ BSEuropeanOptionPricer::BSEuropeanOptionPricer(
 
 double BSEuropeanOptionPricer::price() {
   int call_flag = (m_optionPtr->get_option_type()) == EuropeanOption::OptionType::call ? 1 : -1;
-  return call_flag * m_optionPtr->get_current() * m_optionPtr->get_dividend().discount_factor(m_optionPtr->get_maturity()) * norm_cdf(call_flag * d1()) 
+  return call_flag * m_optionPtr->get_spot() * m_optionPtr->get_dividend().discount_factor(m_optionPtr->get_maturity()) * norm_cdf(call_flag * d1())
   - call_flag * m_optionPtr->get_strike() * m_optionPtr->get_risk_free_rate()->discount_factor(m_optionPtr->get_maturity()) * norm_cdf(call_flag * d2());
 }
 
 double BSEuropeanOptionPricer::d1() const {
-  return (std::log(m_optionPtr->get_current() / m_optionPtr->get_strike())
+  return (std::log(m_optionPtr->get_spot() / m_optionPtr->get_strike())
           + (m_optionPtr->get_risk_free_rate()->get_rate() 
           - m_optionPtr->get_dividend().get_div() 
           + m_optionPtr->get_vol() * m_optionPtr->get_vol() / 2) * m_optionPtr->get_maturity()
