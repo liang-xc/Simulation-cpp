@@ -13,6 +13,6 @@ int main() {
   std::shared_ptr<SimpleYield> yptr = std::make_shared<SimpleYield>(y);  
   EuropeanOption opt(100.0, 100.0, 1, 0.3, yptr, d, EuropeanOption::OptionType::call);
   BSEuropeanOptionPricer pricer(std::make_shared<EuropeanOption>(opt));
-  std::cout << pricer.price() << std::endl;
+  std::cout << "Black-Scholes price: " << pricer.price() << std::endl;
   return 0;
 }

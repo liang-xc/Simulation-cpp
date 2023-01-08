@@ -1,5 +1,5 @@
-#ifndef EUROPEANOPTION_HPP
-#define EUROPEANOPTION_HPP
+#ifndef SIMU_EUROPEAN_OPTION_HPP
+#define SIMU_EUROPEAN_OPTION_HPP
 
 #include <memory>
 

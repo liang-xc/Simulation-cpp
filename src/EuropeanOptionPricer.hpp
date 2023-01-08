@@ -1,5 +1,5 @@
-#ifndef EUROPEAN_OPTION_PRICER_HPP
-#define EUROPEAN_OPTION_PRICER_HPP
+#ifndef SIMU_EUROPEAN_OPTION_PRICER_HPP
+#define SIMU_EUROPEAN_OPTION_PRICER_HPP
 
 #include <memory>
 
@@ -20,13 +20,14 @@ public:
 private:
   std::shared_ptr<EuropeanOption> m_optionPtr;
   
-  double d1();
-  double d2();
+  double d1() const;
+  double d2() const;
 };
 
 class MCEuropeanOptionPricer : public EuropeanOptionPricer {
 public:
   [[nodiscard]] double price() override;
+
 private:
   std::shared_ptr<EuropeanOption> m_optionPtr;
 };
