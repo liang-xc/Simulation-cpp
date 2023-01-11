@@ -16,15 +16,18 @@ namespace simu {
 class TimeGrid {
 public:
   TimeGrid() = default;
-  TimeGrid(double end, std::size_t steps); // evenly distributed
-  TimeGrid(std::initializer_list<double> grid);
-  TimeGrid(std::initializer_list<double> grid, std::size_t steps);
+  TimeGrid(double end, std::size_t steps); // evenly distributed, default first number is 0;
+  TimeGrid(double first, double end, std::size_t steps); // (first, end]
+  /*/TimeGrid(std::initializer_list<double> grid);
+  TimeGrid(std::initializer_list<double> grid, std::size_t steps);/*/
 
   double operator[](std::size_t i);
   double operator[](std::size_t i) const;
 
+
 private:
-  std::unique_ptr<std::vector<double>> grid;
+  std::vector<double> m_grid;
+  //std::unique_ptr<std::vector<double>> m_grid;
 };
 
 }
