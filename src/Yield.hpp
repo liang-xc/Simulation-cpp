@@ -4,12 +4,12 @@
 namespace simu {
 
 class Yield {
-public:
+ public:
   virtual double discount_factor(double maturity) const = 0;
 };
 
 class SimpleYield : public Yield {
-public:
+ public:
   SimpleYield(const double rate);
 
   double discount_factor(double maturity) const override;
@@ -17,12 +17,12 @@ public:
   double get_rate() const;
   void set_rate(double rate);
 
-private:
+ private:
   double m_rate;
 };
 
 class Dividend : public Yield {
-public:
+ public:
   Dividend(const double div);
 
   double discount_factor(double maturity) const override;
@@ -30,9 +30,9 @@ public:
   double get_div() const;
   void set_div(double div);
 
-private:
+ private:
   double m_div;
 };
-}
+}  // namespace simu
 
 #endif

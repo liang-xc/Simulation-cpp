@@ -5,33 +5,33 @@
 
 #include "EuropeanOption.hpp"
 
-namespace simu{
+namespace simu {
 
 class EuropeanOptionPricer {
-public:
+ public:
   virtual double price() = 0;
 };
 
 class BSEuropeanOptionPricer : public EuropeanOptionPricer {
-public:
+ public:
   BSEuropeanOptionPricer(std::shared_ptr<EuropeanOption> european_option_ptr);
   [[nodiscard]] double price() override;
 
-private:
+ private:
   std::shared_ptr<EuropeanOption> m_optionPtr;
-  
+
   double d1() const;
   double d2() const;
 };
 
 class MCEuropeanOptionPricer : public EuropeanOptionPricer {
-public:
+ public:
   [[nodiscard]] double price() override;
 
-private:
+ private:
   std::shared_ptr<EuropeanOption> m_optionPtr;
 };
 
-}
+}  // namespace simu
 
 #endif

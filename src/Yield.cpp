@@ -1,6 +1,6 @@
-#include <cmath>
-
 #include "Yield.hpp"
+
+#include <cmath>
 
 namespace simu {
 
@@ -21,4 +21,4 @@ double Dividend::discount_factor(double maturity) const {
 
 double Dividend::get_div() const { return m_div; }
 void Dividend::set_div(double div) { m_div = div; }
-}
+}  // namespace simu

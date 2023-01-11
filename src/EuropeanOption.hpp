@@ -8,16 +8,12 @@
 namespace simu {
 
 class EuropeanOption {
-public:
-  enum class OptionType { call = 1, put=-1 };
+ public:
+  enum class OptionType { call = 1, put = -1 };
 
-  EuropeanOption(double current,
-                 double strike, 
-                 double maturity, 
-                 double vol, 
-                 std::shared_ptr<SimpleYield> risk_free_rate, 
-                 const Dividend& dividend_rate,
-                 OptionType type);
+  EuropeanOption(double current, double strike, double maturity, double vol,
+                 std::shared_ptr<SimpleYield> risk_free_rate,
+                 const Dividend& dividend_rate, OptionType type);
 
   // Getters and Setters
   double get_spot() const;
@@ -35,7 +31,7 @@ public:
   OptionType get_option_type() const;
   void set_option_type(OptionType type);
 
-private:
+ private:
   double m_spot;
   double m_strike;
   double m_maturity;
@@ -45,5 +41,5 @@ private:
   OptionType m_type;
 };
 
-}
+}  // namespace simu
 #endif

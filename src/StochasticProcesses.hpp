@@ -9,21 +9,20 @@
 namespace simu {
 
 class StochasticProcess1d {
-public:
-
+ public:
 };
 
 class GeometricBrownianMotion : StochasticProcess1d {
-public:
+ public:
   GeometricBrownianMotion() = default;
 
-private:
+ private:
   std::unique_ptr<TimeGrid> grid;
   double x0;
   double drift;
   double sigma;
 };
 
-}
+}  // namespace simu
 
 #endif

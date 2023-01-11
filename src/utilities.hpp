@@ -4,12 +4,11 @@
 #include <cmath>
 #include <numbers>
 
-
 namespace simu {
 
 double norm_pdf(const double& x);
 
 double norm_cdf(const double& x);
-}
+}  // namespace simu
 
 #endif
