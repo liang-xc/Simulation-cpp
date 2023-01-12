@@ -2,11 +2,11 @@
 #define SIMU_TIME_GRID_HPP
 
 #include <initializer_list>
+#include <iterator>
 #include <memory>
 #include <vector>
 
 namespace simu {
-
 /*
  * TimeGrid class
  * Uses a std::vector<double> to store the time grid
@@ -16,19 +16,21 @@ namespace simu {
 class TimeGrid {
  public:
   TimeGrid() = default;
-  TimeGrid(
-      double end,
-      std::size_t steps);  // evenly distributed, default first number is 0;
-  TimeGrid(double first, double end, std::size_t steps);  // (first, end]
-  /*/TimeGrid(std::initializer_list<double> grid);
-  TimeGrid(std::initializer_list<double> grid, std::size_t steps);/*/
+  // evenly distributed, default first number is 0;
+  TimeGrid(double end, std::size_t steps);
+  TimeGrid(double first, double end,
+                    std::size_t steps);  // (first, end]
+  template<class Iterator>
+  TimeGrid(Iterator begin, Iterator end) : m_grid(begin, end) {}
+  TimeGrid(std::initializer_list<double> grid);
 
   double operator[](std::size_t i);
   double operator[](std::size_t i) const;
 
+  std::size_t size() const;
+
  private:
   std::vector<double> m_grid;
-  // std::unique_ptr<std::vector<double>> m_grid;
 };
 
 }  // namespace simu

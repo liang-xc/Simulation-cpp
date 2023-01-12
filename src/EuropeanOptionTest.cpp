@@ -3,6 +3,8 @@
 
 #include "EuropeanOption.hpp"
 #include "EuropeanOptionPricer.hpp"
+#include "StochasticProcesses.hpp"
+#include "Path.hpp"
 #include "Yield.hpp"
 
 using namespace simu;
@@ -14,5 +16,8 @@ int main() {
                      EuropeanOption::OptionType::call);
   BSEuropeanOptionPricer pricer(std::make_shared<EuropeanOption>(opt));
   std::cout << "Black-Scholes price: " << pricer.price() << std::endl;
+
+  TimeGrid test_grid(1, 30);
+  Path p(test_grid, 10'000);
   return 0;
 }
