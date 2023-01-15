@@ -9,13 +9,13 @@ namespace simu {
 
 class EuropeanOptionPricer {
  public:
-  virtual double price() = 0;
+  virtual double price() const = 0;
 };
 
 class BSEuropeanOptionPricer : public EuropeanOptionPricer {
  public:
   BSEuropeanOptionPricer(std::shared_ptr<EuropeanOption> european_option_ptr);
-  [[nodiscard]] double price() override;
+  [[nodiscard]] double price() const override;
 
  private:
   std::shared_ptr<EuropeanOption> m_optionPtr;
@@ -23,15 +23,6 @@ class BSEuropeanOptionPricer : public EuropeanOptionPricer {
   double d1() const;
   double d2() const;
 };
-
-class MCEuropeanOptionPricer : public EuropeanOptionPricer {
- public:
-  [[nodiscard]] double price() override;
-
- private:
-  std::shared_ptr<EuropeanOption> m_optionPtr;
-};
-
 }  // namespace simu
 
 #endif

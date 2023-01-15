@@ -14,10 +14,18 @@ namespace simu {
 class Path {
  public:
   // Path is initialized to be all zeros
-  Path(TimeGrid time_grid, std::size_t path_num);
+  Path(const TimeGrid& time_grid, std::size_t path_num);
 
   // return a vector of the values at the i-th time on the grid
-  std::vector<double> at(std::size_t i);
+  std::vector<double> at_t(std::size_t i) const;
+
+  std::vector<double> path(std::size_t path_i) const;
+
+  double at(std::size_t path_i, std::size_t t_i) const;
+
+  void assign(std::size_t path_i, std::size_t t_i, double value);
+
+  void show() const;
 
  private:
   TimeGrid m_grid;
