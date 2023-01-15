@@ -43,7 +43,11 @@ double MCEuropeanOptionPricer<RNG>::price() const {
   Path path = gbm.generate_path(m_path_num);
   std::vector<double> payoff = path.at_t(m_time_grid->size() - 1);
   for (auto& v : payoff) {
-    v -= m_opt_ptr->get_strike();
+    if (m_opt_ptr->get_option_type() == EuropeanOption::OptionType::call) {
+      v -= m_opt_ptr->get_strike();
+    } else {
+      v = m_opt_ptr->get_strike() - v;
+    }
     if (v < 0) v = 0;
   }
   double result = std::accumulate(payoff.begin(), payoff.end(), 0.0) /
