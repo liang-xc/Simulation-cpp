@@ -12,6 +12,8 @@ BSEuropeanOptionPricer::BSEuropeanOptionPricer(
     std::shared_ptr<EuropeanOption> european_option_pricer)
     : m_optionPtr(std::move(european_option_pricer)) {}
 
+EuropeanOptionPricer::~EuropeanOptionPricer() noexcept {};
+
 double BSEuropeanOptionPricer::price() const {
   int call_flag =
       (m_optionPtr->get_option_type()) == EuropeanOption::OptionType::call ? 1
