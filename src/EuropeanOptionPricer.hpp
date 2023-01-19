@@ -19,7 +19,7 @@ class BSEuropeanOptionPricer : public EuropeanOptionPricer {
 
   [[nodiscard]] double price() const override;
 
-  ~BSEuropeanOptionPricer(){};
+  ~BSEuropeanOptionPricer() override =default;
 
  private:
   std::shared_ptr<EuropeanOption> m_optionPtr;
