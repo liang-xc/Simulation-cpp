@@ -1,0 +1,2 @@
+add_executable(european_option EuropeanOption.cpp)
+target_link_libraries(european_option PRIVATE simu_lib)

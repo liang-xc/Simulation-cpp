@@ -18,6 +18,11 @@ class MCEuropeanOptionPricer : EuropeanOptionPricer {
   MCEuropeanOptionPricer(std::shared_ptr<EuropeanOption> opt_ptr,
                          std::unique_ptr<TimeGrid> time_grid_ptr,
                          std::size_t path_num);
+  ~MCEuropeanOptionPricer() override = default;
+  MCEuropeanOptionPricer(const MCEuropeanOptionPricer&) = delete;
+  MCEuropeanOptionPricer& operator=(const MCEuropeanOptionPricer&) = delete;
+  MCEuropeanOptionPricer(MCEuropeanOptionPricer&&) = delete;
+  MCEuropeanOptionPricer& operator=(MCEuropeanOptionPricer&&) = delete;
   [[nodiscard]] double price() const override;
 
  private:

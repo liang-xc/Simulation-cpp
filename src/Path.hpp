@@ -1,7 +1,6 @@
 #ifndef SIMU_PATH_HPP
 #define SIMU_PATH_HPP
 
-#include <Eigen/Core>
 #include <vector>
 
 #include "TimeGrid.hpp"
