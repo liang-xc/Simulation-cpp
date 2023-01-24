@@ -4,18 +4,18 @@
 
 namespace simu {
 
-SimpleYield::SimpleYield(const double rate) : m_rate(rate) {}
+SimpleYield::SimpleYield(const double& rate) : m_rate(rate) {}
 
-double SimpleYield::discount_factor(double maturity) const {
+double SimpleYield::discount_factor(const double& maturity) const {
   return std::exp(-m_rate * maturity);
 }
 
 void SimpleYield::set_rate(double rate) { m_rate = rate; }
 double SimpleYield::get_rate() const { return m_rate; }
 
-Dividend::Dividend(const double div) : m_div(div) {}
+Dividend::Dividend(const double& div) : m_div(div) {}
 
-double Dividend::discount_factor(double maturity) const {
+double Dividend::discount_factor(const double& maturity) const {
   return std::exp(-m_div * maturity);
 }
 

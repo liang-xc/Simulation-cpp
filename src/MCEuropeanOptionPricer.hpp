@@ -42,9 +42,10 @@ MCEuropeanOptionPricer<RNG>::MCEuropeanOptionPricer(
 template <class RNG>
 double MCEuropeanOptionPricer<RNG>::price() const {
   TimeGrid t = *m_time_grid;
-  GeometricBrownianMotion<RNG> gbm(
-      std::make_unique<TimeGrid>(t), m_opt_ptr->get_spot(),
-      m_opt_ptr->get_risk_free_rate()->get_rate(), m_opt_ptr->get_vol());
+  GeometricBrownianMotion<RNG> gbm(std::make_unique<TimeGrid>(t),
+                                   m_opt_ptr->get_spot(),
+                                   m_opt_ptr->get_risk_free_rate()->get_rate(),
+                                   m_opt_ptr->get_vol()->get_vol());
   Path path = gbm.generate_path(m_path_num);
   std::vector<double> payoff = path.at_t(m_time_grid->size() - 1);
   for (auto& v : payoff) {

@@ -17,6 +17,7 @@ Checks: >
         cppcoreguidelines-*,
           -cppcoreguidelines-avoid-magic-numbers,
           -cppcoreguidelines-narrowing-conversions,
+          -cppcoreguidelines-special-member-functions,
         misc-*,
           -misc-no-recursion,
           -misc-non-private-member-variables-in-classes,

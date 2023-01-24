@@ -3,6 +3,7 @@
 
 #include <memory>
 
+#include "Volatility.hpp"
 #include "Yield.hpp"
 
 namespace simu {
@@ -11,9 +12,10 @@ class EuropeanOption {
  public:
   enum class OptionType { call = 1, put = -1 };
 
-  EuropeanOption(double current, double strike, double maturity, double vol,
+  EuropeanOption(double current, double strike, double maturity,
+                 std::shared_ptr<Volatility> vol,
                  std::shared_ptr<SimpleYield> risk_free_rate,
-                 const Dividend& dividend_rate, OptionType type);
+                 std::shared_ptr<Dividend> dividend_rate, OptionType type);
 
   // Getters and Setters
   double get_spot() const;
@@ -22,12 +24,12 @@ class EuropeanOption {
   void set_strike(const double& strike);
   double get_maturity() const;
   void set_maturity(const double& maturity);
-  double get_vol() const;
-  void set_vol(const double& vol);
+  std::shared_ptr<Volatility> get_vol() const;
+  void set_vol(std::shared_ptr<Volatility> vol);
   std::shared_ptr<SimpleYield> get_risk_free_rate() const;
   void set_risk_free_rate(std::shared_ptr<SimpleYield> risk_free_rate);
-  Dividend get_dividend() const;
-  void set_dividend(Dividend div);
+  std::shared_ptr<Dividend> get_dividend() const;
+  void set_dividend(std::shared_ptr<Dividend> div);
   OptionType get_option_type() const;
   void set_option_type(OptionType type);
 
@@ -35,9 +37,9 @@ class EuropeanOption {
   double m_spot;
   double m_strike;
   double m_maturity;
-  double m_vol;
+  std::shared_ptr<Volatility> m_vol;
   std::shared_ptr<SimpleYield> m_risk_free_rate;
-  Dividend m_dividend_rate;
+  std::shared_ptr<Dividend> m_dividend_rate;
   OptionType m_type;
 };
 
