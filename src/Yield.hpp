@@ -1,5 +1,6 @@
 #ifndef SIMU_YIELD_HPP
 #define SIMU_YIELD_HPP
+//yield -> term structure
 
 namespace simu {
 
