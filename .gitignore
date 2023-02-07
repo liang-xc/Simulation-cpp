@@ -1,6 +1,7 @@
 build/
 .cache/
 cmake-build-debug/
+compile.sh
 
 # Prerequisites
 *.d
