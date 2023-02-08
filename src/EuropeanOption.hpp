@@ -3,6 +3,7 @@
 
 #include <memory>
 
+#include "Date.hpp"
 #include "Volatility.hpp"
 #include "Yield.hpp"
 
@@ -12,7 +13,12 @@ class EuropeanOption {
  public:
   enum class OptionType { call = 1, put = -1 };
 
-  EuropeanOption(double current, double strike, double maturity,
+  EuropeanOption(double current, double strike, double maturity, Date now_date,
+                 std::shared_ptr<Volatility> vol,
+                 std::shared_ptr<SimpleYield> risk_free_rate,
+                 std::shared_ptr<Dividend> dividend_rate, OptionType type);
+
+  EuropeanOption(double current, double strike, Date now_date, Date expire_date,
                  std::shared_ptr<Volatility> vol,
                  std::shared_ptr<SimpleYield> risk_free_rate,
                  std::shared_ptr<Dividend> dividend_rate, OptionType type);
@@ -37,6 +43,8 @@ class EuropeanOption {
   double m_spot;
   double m_strike;
   double m_maturity;
+  Date m_now_date;
+  Date m_expire_date;
   std::shared_ptr<Volatility> m_vol;
   std::shared_ptr<SimpleYield> m_risk_free_rate;
   std::shared_ptr<Dividend> m_dividend_rate;

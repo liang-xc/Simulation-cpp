@@ -8,17 +8,35 @@
 namespace simu {
 
 EuropeanOption::EuropeanOption(double current, double strike, double maturity,
+                               Date now_date, std::shared_ptr<Volatility> vol,
+                               std::shared_ptr<SimpleYield> risk_free_rate,
+                               std::shared_ptr<Dividend> dividend_rate,
+                               OptionType type)
+    : m_spot{current},
+      m_strike{strike},
+      m_maturity{maturity},
+      m_now_date{now_date},
+      m_expire_date{now_date + (maturity / 365.0)},  // convention Act/365
+      m_vol{std::move(vol)},
+      m_risk_free_rate{std::move(risk_free_rate)},
+      m_dividend_rate{std::move(dividend_rate)},
+      m_type{type} {}
+
+EuropeanOption::EuropeanOption(double current, double strike, Date now_date,
+                               Date expire_date,
                                std::shared_ptr<Volatility> vol,
                                std::shared_ptr<SimpleYield> risk_free_rate,
                                std::shared_ptr<Dividend> dividend_rate,
                                OptionType type)
-    : m_spot(current),
-      m_strike(strike),
-      m_maturity(maturity),
-      m_vol(std::move(vol)),
-      m_risk_free_rate(std::move(risk_free_rate)),
-      m_dividend_rate(std::move(dividend_rate)),
-      m_type(type) {}
+    : m_spot{current},
+      m_strike{strike},
+      m_maturity{(expire_date - now_date) / 365.0},
+      m_now_date{now_date},
+      m_expire_date{expire_date},
+      m_vol{std::move(vol)},
+      m_risk_free_rate{std::move(risk_free_rate)},
+      m_dividend_rate{std::move(dividend_rate)},
+      m_type{type} {}
 
 // Getters and Setters
 double EuropeanOption::get_spot() const { return m_spot; }

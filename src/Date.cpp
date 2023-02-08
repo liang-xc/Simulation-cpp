@@ -7,8 +7,6 @@
 #include <sstream>
 #include <string>
 
-using namespace std;
-
 namespace simu {
 
 static double get_date(int yyyy, int mm, int dd) {
@@ -56,28 +54,28 @@ Date::Date(int yyyy, int mm, int dd) : m_days(get_date(yyyy, mm, dd)){};
 // yyyy-mm-dd
 Date::Date(const std::string &view) {
   if ((view.size() != 10) || (view[4] != '-') || (view[7] != '-')) {
-    ostringstream ss;
+    std::ostringstream ss;
     ss << "Bad date format '" << view << "', exected yyyy-mm-dd";
     throw std::runtime_error(ss.str());
   }
   int yyyy;
   int mm;
   int dd;
-  auto res = from_chars(view.data(), view.data() + 4, yyyy);
-  if (res.ec != errc()) {
-    ostringstream ss;
+  auto res = std::from_chars(view.data(), view.data() + 4, yyyy);
+  if (res.ec != std::errc()) {
+    std::ostringstream ss;
     ss << "Bad  year '" << view.substr(0, 4) << "' for date '" << view << "'";
     throw std::runtime_error(ss.str());
   }
-  res = from_chars(view.data() + 5, view.data() + 7, mm);
-  if (res.ec != errc()) {
-    ostringstream ss;
+  res = std::from_chars(view.data() + 5, view.data() + 7, mm);
+  if (res.ec != std::errc()) {
+    std::ostringstream ss;
     ss << "Bad  montn '" << view.substr(5, 7) << "' for date '" << view << "'";
     throw std::runtime_error(ss.str());
   }
-  res = from_chars(view.data() + 8, view.data() + view.size(), dd);
-  if (res.ec != errc()) {
-    ostringstream ss;
+  res = std::from_chars(view.data() + 8, view.data() + view.size(), dd);
+  if (res.ec != std::errc()) {
+    std::ostringstream ss;
     ss << "Bad  day '" << view.substr(8, view.size()) << "' for date '" << view
        << "'";
     throw std::runtime_error(ss.str());
@@ -101,7 +99,7 @@ std::ostream &operator<<(std::ostream &os, Date date) {
 }
 
 std::istream &operator>>(std::istream &is, Date &date) {
-  string date_str;
+  std::string date_str;
 
   is >> date_str;  // read date string
 
