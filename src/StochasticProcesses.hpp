@@ -42,7 +42,8 @@ GeometricBrownianMotion<RNG>::GeometricBrownianMotion(
 template <class RNG>
 Path GeometricBrownianMotion<RNG>::generate_path(std::size_t path_num) {
   Path result(*m_grid, path_num);
-  RNG rng;
+  std::random_device rd;
+  RNG rng(rd());
   std::normal_distribution<double> distribution(0, 1);
   for (std::size_t i = 0; i < path_num; ++i) {
     result.assign(i, 0, m_x0);
